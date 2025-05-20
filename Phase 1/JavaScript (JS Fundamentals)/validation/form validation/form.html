@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            background-image: url("https://images.freecreatives.com/wp-content/uploads/2016/01/Free-Blue-Pattern-Background-For-Download.jpg");
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(5px);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            color: blue;
+            margin: 10px;
+            padding: 10px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        input {
+            width: 100%;
+            max-width: 250px;
+            height: 40px;
+            margin: 10px auto;
+            padding: 10px;
+            padding: 0 20px;
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #0056b3;
+        }
+
+        button {
+            width: 250px;
+            height: 40px;
+            margin: 10px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .formerror {
+            color: red;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <h1>Welcome to the Form</h1>
+
+    <form action="/myaction.php" name="myform" id="myform" onsubmit="return valid()" method="post">
+        <div class="formdesign" id="username">
+            <label for="username">Username:</label>
+            <input type="text" name="username" placeholder="Username">
+            <span class="formerror"></span>
+        </div>
+        <div class="formdesign" id="phone_number">
+            <label for="phone_number">Phone Number:</label>
+            <input type="number" name="phone_number" placeholder="Phone Number">
+            <span class="formerror"></span>
+        </div>
+        <div class="formdesign" id="email">
+            <label for="email">Email:</label>
+            <input type="email" name="email" placeholder="Email">
+            <span class="formerror"></span>
+        </div>
+        <div class="formdesign" id="password">
+            <label for="password">Password:</label>
+            <input type="password" name="password" placeholder="Password">
+            <span class="formerror"></span>
+        </div>
+        <div class="formdesign" id="confirm_password">
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" placeholder="Confirm Password">
+            <span class="formerror"></span>
+        </div>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <script>
+        function seterror(id, error) {
+            let element = document.getElementById(id);
+            let errorElement = element.getElementsByClassName("formerror")[0];  
+            errorElement.innerHTML = error;
+            errorElement.style.display = "block";
+        }
+
+        function clearErrors() {
+            let errors = document.getElementsByClassName("formerror");
+            for (let item of errors) {
+                item.innerHTML = "";
+                item.style.display = "none";
+            }
+        }
+
+        function valid() {
+            clearErrors(); // Clear previous errors
+            let returnVal = true;
+
+            let form = document.forms['myform'];
+        
+            // Validate username
+            let username = form["username"].value;
+            if (username.length < 5) {
+                seterror("username", "*Username must be at least 5 characters long.");
+                returnVal = false;
+            }
+            if (username === "") {
+                seterror("username", "*Please fill out the username.");
+                returnVal = false;
+            }
+            // we have also req attribute in html form for username to get user must fill the blanks
+
+            // Validate phone number
+            let phone = form["phone_number"].value;
+            if (phone.length !== 10) {
+                seterror("phone_number", "*Phone number must be exactly 10 digits.");
+                returnVal = false;
+            }
+            if (phone === "") {
+                seterror("phone_number", "*Please fill out the phone number.");
+                returnVal = false;
+            }
+
+            // Validate email
+            let email = form["email"].value;
+            if (!/\d/.test(email)) {
+                seterror("email", "*Email must contain a number.");
+                returnVal = false;
+            }
+            if (email === "") {
+                seterror("email", "*Please fill out the email.");
+                returnVal = false;
+            }
+
+            // Validate password
+            let password = form["password"].value;
+            if (password.length < 8) {
+                seterror("password", "*Password must be at least 8 characters long.");
+                returnVal = false;
+            }
+            if (password === "") {
+                seterror("password", "*Please fill out the password.");
+                returnVal = false;
+            }
+
+            // Validate confirm password
+            let confirm_password = form["confirm_password"].value;
+            if (confirm_password !== password) {
+                seterror("confirm_password", "*Passwords do not match.");
+                returnVal = false;
+            }
+            if (confirm_password === "") {
+                seterror("confirm_password", "*Please confirm your password.");
+                returnVal = false;
+            }
+
+            return returnVal; // Return true only if no errors
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Todo List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+</head>
+<body>
+
+    <div class="container">
+        <h1 style="color: #2563eb; margin-bottom: 2rem;">Todo List</h1>
+        <div id="newtask">
+            <input type="text" placeholder="Enter task">
+            <button id="ADD">Add Task</button>
+        </div>
+        <div id="task"></div>
+    </div>
+
+    <script>
+        document.querySelector('#ADD').onclick = function () {
+            if (document.querySelector('#newtask input').value.length == 0) {
+                alert('Please add a task');
+            } 
+            else {
+                document.querySelector('#task').innerHTML += `
+                    <div class="task">
+                        <span id="taskname">
+                            ${document.querySelector('#newtask input').value}
+                        </span>
+                        <button class="delete">
+                            delete
+                        </button>
+                    </div>
+                `; 
+
+                var current_tasks = document.querySelectorAll(".delete");
+                for(var i = 0; i < current_tasks.length; i++){
+                    current_tasks[i].onclick = function(){
+                        this.parentNode.remove();
+                    }
+                }
+            }
+        };
+
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

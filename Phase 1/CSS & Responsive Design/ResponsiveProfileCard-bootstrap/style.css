@@ -1,0 +1,114 @@
+/* ✅ Custom Properties */
+:root {
+    --main-color: #4a90e2;
+    --card-bg: #fff;
+    --text-color: #333;
+    --padding: 1rem;
+  }
+  
+  /* ✅ Universal Selector */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* ✅ Body Styling */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    color: var(--text-color);
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  /* ✅ Text Styles */
+  .title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* ✅ Grid Layout */
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    place-items: center;
+  }
+  
+  /* ✅ Card Styles */
+  .card {
+    background-color: var(--card-bg);
+    padding: var(--padding);
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* ✅ Hover Effects (Pseudo-classes + Transitions) */
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 2;
+  }
+  
+  /* ✅ Image Styling */
+  .card img {
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  
+  /* ✅ Button Style + Pseudo */
+  .card button {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    margin-top: 1em;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card button:hover {
+    background-color: #3367d6;
+  }
+  
+  /* ✅ Special Class Selector */
+  .card.special {
+    border: 2px dashed var(--main-color);
+  }
+  
+  /* ✅ Responsive Design (Media Queries) */
+  @media screen and (max-width: 600px) {
+    .title {
+      font-size: 1.5rem;
+    }
+  }
+  
+  /* ✅ Animation Example */
+  .card:nth-child(2) {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* ✅ Keyframe Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

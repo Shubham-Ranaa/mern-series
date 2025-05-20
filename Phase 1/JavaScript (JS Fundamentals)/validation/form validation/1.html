@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="/myaction.php" name="myform" id="myform" onsubmit="return validateForm()" method="post">
+        <input type="text" name="username" id="username" placeholder="username">
+        <input type="password" name="password" id="password" placeholder="password">
+        <span id="error"></span>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        
+        function seterror(errorMessage) {
+            const errorElement = document.getElementById("error");
+            errorElement.innerHTML = errorMessage;
+        }
+
+        function validateForm() {
+            let returnval = true;
+
+            const form = document.forms["myform"];
+            const username = form["username"].value; // get username
+            const password = form["password"].value; // get password
+
+            // Reset error
+            seterror(""); 
+
+            // Username validation
+            if (username.length < 5) {
+                seterror("Username must be at least 5 characters long.");
+                returnval = false;
+            }
+
+            // Password validation (example check for length)
+            if (password.length < 6) {
+                seterror("Password must be at least 6 characters long.");
+                returnval = false;
+            }
+
+            return returnval; // Return false to prevent form submission if invalid
+        }
+    </script>
+</body>
+</html>

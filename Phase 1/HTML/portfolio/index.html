@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    header, nav, footer {
+      background-color: #f0f0f0;
+      padding: 10px;
+    }
+    #about {
+      margin-top: 20px;
+    }
+    .profile-img {
+      width: 150px;
+      border-radius: 50%;
+    }
+    table, td, th {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Semantic Header -->
+  <header>
+    <h1>My Portfolio</h1>
+    <p><b>Hello!</b> I'm a web developer.</p>
+  </header>
+
+  <!-- Navigation Links -->
+  <nav>
+    <a href="#about">About Me</a> |
+    <a href="#skills">Skills</a> |
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Image and Text -->
+  <section id="about">
+    <h2>About Me</h2>
+    <img src="https://via.placeholder.com/150" alt="My Photo" class="profile-img">
+    <p><i>I love coding and building websites.</i></p>
+  </section>
+
+  <!-- Lists -->
+  <section id="skills">
+    <h2>My Skills</h2>
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+    </ul>
+
+    <h3>Learning Roadmap</h3>
+    <ol>
+      <li>Basics</li>
+      <li>Projects</li>
+      <li>Advanced Topics</li>
+    </ol>
+  </section>
+
+  <!-- Table -->
+  <section>
+    <h2>Experience</h2>
+    <table>
+      <tr>
+        <th>Year</th>
+        <th>Company</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>2023</td>
+        <td>XYZ Corp</td>
+        <td>Frontend Intern</td>
+      </tr>
+      <tr>
+        <td>2024</td>
+        <td>ABC Ltd</td>
+        <td>Junior Developer</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Form -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name"><br><br>
+
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email"><br><br>
+
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 My Portfolio</p>
+  </footer>
+
+</body>
+</html>

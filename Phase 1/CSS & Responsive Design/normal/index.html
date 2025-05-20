@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Concepts Playground</title>
+  <style>
+    /* --------------------------------------------------
+       Custom Properties (CSS Variables)
+    -------------------------------------------------- */
+    :root {
+      --primary: #4e8cff;
+      --secondary: #ffe34e;
+      --radius: 0.75rem;
+    }
+
+    /* --------------------------------------------------
+       Global Reset + Universal Selector
+    -------------------------------------------------- */
+    * {
+      box-sizing: border-box; /* Demonstrates the universal (*) selector */
+    }
+
+    body {
+      margin: 0; /* Box‑model property */
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--secondary); /* Using a custom property */
+      color: #111;
+    }
+
+    /* --------------------------------------------------
+       Header – positioning, flexbox, z‑index, custom props
+    -------------------------------------------------- */
+    header {
+      position: sticky; /* Positioning */
+      top: 0;
+      z-index: 100; /* z‑index */
+
+      display: flex; /* Flexbox */
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 1rem 2rem; /* Box model */
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Nav links showcase pseudo‑classes & transitions */
+    nav a {
+      margin-left: 1rem;
+      color: #fff;
+      text-decoration: none;
+      position: relative;
+      transition: opacity 0.3s; /* Transition */
+    }
+    nav a:hover {
+      opacity: 0.7; /* :hover pseudo‑class */
+    }
+
+    /* Animated underline using ::after & @keyframes */
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0%;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s ease-in-out; /* Transition */
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* --------------------------------------------------
+       Main – Grid layout (Responsive with auto‑fit)
+    -------------------------------------------------- */
+    main {
+      display: grid; /* Grid */
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; /* Grid gap */
+      padding: 2rem;
+    }
+
+    /* --------------------------------------------------
+       Card component – Flex, Box‑model, Hover FX
+    -------------------------------------------------- */
+    .card {
+      background: #fff;
+      border: 3px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+
+      display: flex; /* Flexbox inside card */
+      flex-direction: column;
+      gap: 0.75rem;
+
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-4px); /* Hover transition */
+    }
+
+    /* :nth-child() pseudo‑class */
+    .card:nth-child(odd) {
+      background: #f9f9f9;
+    }
+
+    /* Flexbox utility area inside card */
+    .actions {
+      margin-top: auto;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    /* Buttons – pseudo‑classes & units */
+    button {
+      border: none;
+      padding: 0.5rem 1rem; /* rem unit */
+      font-size: 1rem;
+      border-radius: var(--radius);
+      background: var(--primary);
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #3563c9;
+    }
+    button:active {
+      transform: scale(0.97); /* :active pseudo‑class */
+    }
+
+    /* --------------------------------------------------
+       Box‑model demonstration element
+    -------------------------------------------------- */
+    .box-model-demo {
+      margin: 2rem; /* External space */
+      padding: 1.5rem; /* Internal space */
+      border: 4px dashed var(--primary); /* Border */
+      text-align: center;
+    }
+
+    /* --------------------------------------------------
+       Animation demo using @keyframes
+    -------------------------------------------------- */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    .pulse {
+      animation: pulse 2s infinite; /* animation shorthand */
+    }
+
+    /* --------------------------------------------------
+       Responsive Design – Media Query & vw units
+    -------------------------------------------------- */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column; /* Flexbox change */
+        align-items: flex-start;
+      }
+      nav a {
+        margin: 0 0.5rem 0.5rem 0;
+      }
+    }
+
+    /* Overflow demo (horizontal scroll) */
+    .scroll-demo {
+      overflow-x: auto; /* overflow property */
+      white-space: nowrap;
+    }
+    .scroll-demo span {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: #fff;
+      margin-right: 0.5rem;
+      border-radius: var(--radius);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header demonstrates sticky positioning, z-index, flexbox -->
+  <header>
+    <h1 class="pulse">CSS Playground</h1>
+    <nav>
+      <a href="#selectors">Selectors</a>
+      <a href="#flexbox">Flexbox</a>
+      <a href="#grid">Grid</a>
+    </nav>
+  </header>
+
+  <!-- Grid container with auto‑fit responsive behavior -->
+  <main>
+    <!-- Selectors & Colors -->
+    <section id="selectors" class="card">
+      <h2>Selectors</h2>
+      <p>This card combines class (<code>.card</code>), type (<code>h2</code>), and pseudo‑class (<code>:hover</code>) selectors.</p>
+    </section>
+
+    <!-- Text & Custom Properties -->
+    <section class="card">
+      <h2>Colors & Text</h2>
+      <p>Using custom property <code>var(--primary)</code> for border and heading colors. Font size uses the <code>rem</code> unit.</p>
+    </section>
+
+    <!-- Box Model -->
+    <section class="card" id="box-model">
+      <h2>Box Model</h2>
+      <div class="box-model-demo">Margin, Padding & Border in action!</div>
+    </section>
+
+    <!-- Flexbox -->
+    <section id="flexbox" class="card">
+      <h2>Flexbox</h2>
+      <p>The buttons below are spaced with <code>justify-content</code> and <code>gap</code>.</p>
+      <div class="actions">
+        <button>Like</button>
+        <button>Share</button>
+      </div>
+    </section>
+
+    <!-- Grid & Responsive Design -->
+    <section id="grid" class="card">
+      <h2>Grid & Responsive</h2>
+      <p>This entire layout is built with CSS Grid. Resize the window to see <code>auto-fit</code> adjust columns.</p>
+    </section>
+
+    <!-- Transitions & Animations -->
+    <section class="card">
+      <h2>Animations</h2>
+      <p>The header title pulses using <code>@keyframes</code> and <code>animation</code>.</p>
+    </section>
+
+    <!-- Overflow & Units Demo -->
+    <section class="card">
+      <h2>Overflow & Units</h2>
+      <div class="scroll-demo">
+        <span>px</span><span>%</span><span>em</span><span>rem</span><span>vh</span><span>vw</span><span>more-unit</span><span>scrolls</span>
+      </div>
+    </section>
+  </main>
+
+  <footer style="text-align: center; padding: 1rem; font-size: 0.875rem;">
+    Made with 💙 using modern CSS – try inspecting elements to explore each concept.
+  </footer>
+</body>
+</html>
